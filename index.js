@@ -29,6 +29,15 @@ async function run(){
         })
 
 
+        // get data from mongo db.
+        app.get('/serviceslimit', async(req, res)=>{
+           const query = {}
+           const cursor = servicesCollection.find(query)
+           const service = await cursor.limit(3).toArray()
+           res.send(service)
+        })
+
+
         
         // Post data in mongodb
         app.post('/services', async(req, res)=>{
