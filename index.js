@@ -136,15 +136,6 @@ async function run() {
     app.put('/reviews/:id', async(req, res) =>{
         const id = req.params.id;
         const filter = {_id: ObjectId(id)}
-        const previousReview = req.body;
-        const updatedReview = {
-            $set: {
-                review: previousReview.review,
-                username: previousReview.username,
-                useremail: previousReview.useremail,
-                ratings: previousReview.ratings,
-            },
-        };
         const result = await reviewCollection.updateOne(filter, updatedReview)
         res.send(result);
     });
